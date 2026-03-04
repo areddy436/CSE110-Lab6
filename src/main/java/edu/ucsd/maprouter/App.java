@@ -2,7 +2,8 @@ package edu.ucsd.maprouter;
 
 public class App {
     public static void main(String[] args) {
-        MapRouter router = new MapRouter();
+        IMapsClient mapClient = new GoogleMapsClient();
+        MapRouter router = new MapRouter(mapClient);
 
         System.out.println("--- Starting Navigation System ---");
 

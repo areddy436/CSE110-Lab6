@@ -14,7 +14,9 @@ public class MapRouterTest {
     @Test
     void testCalculateTravelTime() {
 
-        MapRouter router = new MapRouter();
+        MockMapsClient mockMapsClient = new MockMapsClient(12.5);
+
+        MapRouter router = new MapRouter(mockMapsClient);
 
         double result = router.calculateTravelTime("UCSD", "Airport");
 
@@ -28,12 +30,15 @@ public class MapRouterTest {
     @Test
     void testDifferentTravelTime() {
 
-        MapRouter router = new MapRouter();
+        MockMapsClient mockMapsClient = new MockMapsClient(12.5);
+
+        MapRouter router = new MapRouter(mockMapsClient);
 
         double result = router.calculateTravelTime("UCSD", "Airport");
 
         assertEquals(12.5, result, "The travel time should be 12.5");
 
+        mockMapsClient.setFixedTime(20);
         result = router.calculateTravelTime("UCSD", "Airport");
 
         assertEquals(20, result, "The travel time should be 20");
